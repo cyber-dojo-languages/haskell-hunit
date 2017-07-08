@@ -1,7 +1,14 @@
 
 lambda { |stdout,stderr,status|
   output = stdout + stderr
-  hunit_pattern = /Counts \{cases = (\d+), tried = (\d+), errors = (\d+), failures = (\d+)\}/
+  # hunit is producing spurious hidden lines at
+  # the start of stderr that end in a carriage-return
+  # without a newline. Sheesh...
+  cr = output.rindex("\r")
+  unless cr.nil?
+    output = output[cr+1..-1]
+  end
+  hunit_pattern = /^Cases: (\d+)  Tried: (\d+)  Errors: (\d+)  Failures: (\d+)$/
   if match = hunit_pattern.match(output)
     return :amber if match[3] != '0'
     return :red   if match[4] != '0'
