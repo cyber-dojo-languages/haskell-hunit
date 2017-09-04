@@ -1,15 +1,17 @@
 {
+  "display_name": "Haskell, hunit",
+
   "visible_filenames": [
     "test_Hiker.hs",
     "Hiker.hs",
     "cyber-dojo.sh"
   ],
 
+  "image_name": "cyberdojofoundation/haskell_hunit",
+
   "filename_extension" : ".hs",
 
   "tab_size": 4,
 
-  "display_name": "Haskell, hunit",
-
-  "image_name": "cyberdojofoundation/haskell_hunit"
+  "runner_choice": "stateless"
 }
