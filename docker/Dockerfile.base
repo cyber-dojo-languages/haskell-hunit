@@ -1,4 +1,4 @@
-FROM  cyberdojofoundation/haskell
+FROM  cyberdojofoundation/haskell:ea82306
 LABEL maintainer=jon@jaggersoft.com
 
 COPY red_amber_green.rb /usr/local/bin
