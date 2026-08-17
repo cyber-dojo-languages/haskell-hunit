@@ -1,6 +1,11 @@
 FROM ghcr.io/cyber-dojo-languages/haskell:260fee3
 LABEL maintainer=jon@jaggersoft.com
 
+# Installed as the user a kata runs as. Installing as root puts HUnit in
+# /root, which that user cannot read (/root is mode 700), leaving it to reach
+# hackage over a network a kata does not have.
+USER sandbox
 RUN cabal update
 RUN cabal v2-install --lib HUnit
+USER root
 
