@@ -1,4 +1,4 @@
-FROM ghcr.io/cyber-dojo-languages/haskell:260fee3
+FROM ghcr.io/cyber-dojo-languages/haskell:ff0abe7
 LABEL maintainer=jon@jaggersoft.com
 
 # Installed as the user a kata runs as. Installing as root puts HUnit in
