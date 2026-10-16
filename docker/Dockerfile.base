@@ -1,11 +1,16 @@
-FROM ghcr.io/cyber-dojo-languages/haskell:ff0abe7
+FROM ghcr.io/cyber-dojo-languages/haskell:99816fb
 LABEL maintainer=jon@jaggersoft.com
 
 # Installed as the user a kata runs as. Installing as root puts HUnit in
 # /root, which that user cannot read (/root is mode 700), leaving it to reach
-# hackage over a network a kata does not have.
+# hackage over a network a kata does not have. No version is named, so a
+# rebuild installs the newest HUnit.
 USER sandbox
 RUN cabal update
 RUN cabal v2-install --lib HUnit
 USER root
 
+# /versions.json belongs to root, so the HUnit installed above is recorded
+# now the user is root again.
+COPY record_versions.sh /tmp/
+RUN sh /tmp/record_versions.sh && rm /tmp/record_versions.sh
